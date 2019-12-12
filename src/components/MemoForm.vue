@@ -37,12 +37,13 @@ export default {
     },
     addMemo() {
       const { title, content } = this;
-      const id = new Date().getTime();
+      // const id = new Date().getTime();
       // 제목이나 내용을 입력하지 않았을 경우
       const isEmpty = [title.trim(), content.trim()].includes('');
       if (isEmpty) return;
       // addMemo 이벤트를 발생
-      this.$emit('addMemo', { id, title, content });
+      // this.$emit('addMemo', { id, title, content });
+      this.$emit('addMemo', { title, content });
       // 메모 등록 후 내용 초기화
       this.resetFields();
     }

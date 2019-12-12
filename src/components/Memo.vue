@@ -24,12 +24,20 @@ export default {
   props: {
     memo: {
       type: Object
+    },
+    editingId: {
+      type: Number
     }
   },
-  data() {
-    return {
-      isEditing: false
-    };
+  // data() {
+  //   return {
+  //     isEditing: false
+  //   };
+  // },
+  computed: {
+    isEditing() {
+      return this.memo.id === this.editingId;
+    }
   },
   methods: {
     deleteMemo() {
@@ -37,10 +45,12 @@ export default {
       this.$emit('deleteMemo', id);
     },
     handleBlur() {
-      this.isEditing = false;
+      // this.isEditing = false;
+      this.$emit('resetEditingId');
     },
     handleDbClick() {
-      this.isEditing = true;
+      // this.isEditing = true;
+      this.$emit('setEditingId', this.memo.id);
       this.$nextTick(() => this.$refs.content.focus());
     },
     updateMemo({ target: { value } }) {
